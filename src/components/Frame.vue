@@ -1,9 +1,12 @@
 <template>
 <!-- 用来做基本框架结构，放置页头页脚 -->
-  <div>
-      <Navigator></Navigator>
-      <Footer></Footer>
-  </div>
+<div class="frame">
+    <Navigator></Navigator>
+    <main class="main">
+      <router-view></router-view>
+    </main>
+    <Footer class="footer"></Footer>
+</div>
 </template>
 
 <script>
@@ -29,4 +32,16 @@ export default {
 
 </script>
 <style scoped>
+.frame{
+  min-height:100%;
+  position:relative;
+}
+.main{
+  height: 200px;
+}
+.footer{
+  width:100%;
+  position:absolute;
+  bottom: 0
+}
 </style>

@@ -1,19 +1,25 @@
 <template>
   <div>
-    讨论天地
+      资源中心
   </div>
 </template>
+
 <script>
 export default {
   data() {
     return {
     };
   },
+
   components: {},
+
   computed: {},
+
   mounted: {},
+
   methods: {},
 };
+
 </script>
 <style scoped>
 </style>

@@ -1,5 +1,5 @@
 <template>
-  <el-row class="footer" type="flex" justify="space-around" :gutter="10">
+  <el-row class="footer" type="flex" justify="space-around">
     <!-- 左边介绍部分 -->
       <el-col :span="15" class="footer-left-introduction">
           <p>我们是 专注于 广外人 的英文阅读课程期末复习的在线平台。</p>
@@ -67,7 +67,9 @@ export default {
 </script>
 <style scoped>
 .footer{
-  padding:30px 0;
+  box-sizing: border-box;
+  padding: 30px 0;
+  height:210px;
 }
 .el-row{
  background-color: #474443;

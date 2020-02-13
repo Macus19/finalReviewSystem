@@ -1,19 +1,25 @@
 <template>
   <div>
-    讨论天地
+      巩固练习
   </div>
 </template>
+
 <script>
 export default {
   data() {
     return {
     };
   },
+
   components: {},
+
   computed: {},
+
   mounted: {},
+
   methods: {},
 };
+
 </script>
 <style scoped>
 </style>

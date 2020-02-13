@@ -1,19 +1,26 @@
 <template>
   <div>
-    讨论天地
+      随机练习
   </div>
 </template>
+
 <script>
 export default {
   data() {
     return {
     };
   },
+
   components: {},
+
   computed: {},
+
   mounted: {},
+
   methods: {},
 };
+
 </script>
 <style scoped>
 </style>
+
