@@ -37,7 +37,11 @@ export default {
   position:relative;
 }
 .main{
-  height: 200px;
+  width:75%;
+  margin:0 auto;
+  height:auto;
+  overflow: hidden;
+  padding-bottom: 210px;
 }
 .footer{
   width:100%;

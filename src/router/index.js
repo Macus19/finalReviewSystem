@@ -5,6 +5,7 @@ import SourceCenter from '@/components/SourceCenter/SourceCenter';
 import ConsolidationExercise from '@/components/ConsolidationExercise/ConsolidationExercise';
 import RandomExercise from '@/components/RandomExercise/RandomExercise';
 import DiscussionWorld from '@/components/DiscussionWorld/DiscussionWorld';
+import Index from '@/components/Index/Index';
 
 Vue.use(Router);
 
@@ -15,6 +16,11 @@ export default new Router({
       name: 'Frame',
       component: Frame,
       children: [
+        {
+          path: '/',
+          name: 'Index',
+          component: Index,
+        },
         {
           path: '/SourceCenter',
           name: 'SourceCenter',
