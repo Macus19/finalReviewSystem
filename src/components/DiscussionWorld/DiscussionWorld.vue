@@ -1,5 +1,5 @@
 <template>
-  <container class="discussion-world-container">
+  <div class="discussion-world-container">
     <!-- 最上面的搜索栏 -->
     <el-row type="flex" justify="space-between" align="middle" :gutter="20">
       <!-- 搜索框 -->
@@ -70,7 +70,7 @@
         </PageCard>
       </div>
     </div>
-  </container>
+  </div>
 </template>
 <script>
 import PageCard from './Components/PageCard';
@@ -235,7 +235,8 @@ export default {
 </script>
 <style scoped>
 .discussion-world-container{
-  padding: 30px;
+  width:75%;
+  margin:0 auto;
 }
 .choose-bar-container{
   display: flex;

@@ -1,5 +1,5 @@
 <template>
-  <container>
+  <div class="post-detail-container">
     <!-- 帖子标题 -->
     <p class="post-top-title">{{title}}</p>
     <!-- 帖子楼主的信息 -->
@@ -72,7 +72,7 @@
         </el-row>
       </div>
     </div>
-  </container>
+  </div>
 </template>
 
 <script>
@@ -135,6 +135,10 @@ export default {
 
 </script>
 <style scoped>
+.post-detail-container{
+  width:75%;
+  margin:0 auto;
+}
 .post-top-title{
   font-size: 30px;
   font-weight: bold;
@@ -187,11 +191,11 @@ export default {
 }
 </style>
 <style>
-.el-tabs__item.is-active{
+.post-comment-area /deep/ .el-tabs__item.is-active{
   color:#67C23A;
 }
-.el-tabs__active-bar{
-  background-color: #67C23A;
+.post-comment-area /deep/ .el-tabs__active-bar{
+  background-color: #67C23A !important;
   text-align: right
 }
 </style>

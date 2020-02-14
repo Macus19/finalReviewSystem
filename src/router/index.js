@@ -7,6 +7,7 @@ import RandomExercise from '@/components/RandomExercise/RandomExercise';
 import DiscussionWorld from '@/components/DiscussionWorld/DiscussionWorld';
 import Index from '@/components/Index/Index';
 import PostDetail from '@/components/PostDetail/PostDetail';
+import PersonalZone from '@/components/PersonalZone/PersonalZone';
 
 Vue.use(Router);
 
@@ -46,6 +47,11 @@ export default new Router({
           path: '/PostDetail',
           name: 'PostDetail',
           component: PostDetail,
+        },
+        {
+          path: '/PersonalZone',
+          name: 'PersonalZone',
+          component: PersonalZone,
         },
       ],
     },

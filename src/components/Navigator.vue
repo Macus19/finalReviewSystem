@@ -21,7 +21,7 @@
   <el-col :span="4" class="right-box">
     <el-row type="flex">
       <el-col :span="10">
-        我的学习
+        <span @click="turnToPersonalZone">我的学习</span>
       </el-col>
       <el-col :span="3">
         <i class="el-icon-setting"></i>|
@@ -42,7 +42,12 @@ export default {
     };
   },
   components: {},
-  methods: {},
+  methods: {
+    // 跳转到个人空间页面
+    turnToPersonalZone() {
+      this.$router.push({ path: '/PersonalZone' });
+    },
+  },
 };
 
 </script>

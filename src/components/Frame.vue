@@ -3,7 +3,8 @@
 <div class="frame">
     <Navigator></Navigator>
     <main class="main">
-      <router-view></router-view>
+      <router-view>
+      </router-view>
     </main>
     <Footer class="footer"></Footer>
 </div>
@@ -33,7 +34,6 @@ export default {
   position:relative;
 }
 .main{
-  width:75%;
   margin:0 auto;
   height:auto;
   overflow: hidden;
