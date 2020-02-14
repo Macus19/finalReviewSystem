@@ -6,6 +6,7 @@ import ConsolidationExercise from '@/components/ConsolidationExercise/Consolidat
 import RandomExercise from '@/components/RandomExercise/RandomExercise';
 import DiscussionWorld from '@/components/DiscussionWorld/DiscussionWorld';
 import Index from '@/components/Index/Index';
+import PostDetail from '@/components/PostDetail/PostDetail';
 
 Vue.use(Router);
 
@@ -40,6 +41,11 @@ export default new Router({
           path: '/DiscussionWorld',
           name: 'DiscussionWorld',
           component: DiscussionWorld,
+        },
+        {
+          path: '/PostDetail',
+          name: 'PostDetail',
+          component: PostDetail,
         },
       ],
     },

@@ -23,10 +23,6 @@ export default {
     Footer,
   },
 
-  computed: {},
-
-  mounted: {},
-
   methods: {},
 };
 

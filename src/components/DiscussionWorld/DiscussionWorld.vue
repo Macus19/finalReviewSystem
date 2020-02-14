@@ -3,7 +3,7 @@
     <!-- 最上面的搜索栏 -->
     <el-row type="flex" justify="space-between" align="middle" :gutter="20">
       <!-- 搜索框 -->
-      <el-col :span="20" class="top-search-bar">
+      <el-col :span="18" class="top-search-bar">
         <el-input
           placeholder="搜索题目关键字/课堂单元"
           prefix-icon="el-icon-search"
@@ -13,7 +13,7 @@
         </el-input>
       </el-col>
       <!-- 发布操作 -->
-      <el-col :span="4" class="choose-bar">
+      <el-col :span="5" class="choose-bar">
         <div class="choose-bar-container">
           <div class="choose-bar-item">
             <i class="el-icon-picture-outline"></i>
@@ -62,8 +62,13 @@
         </el-carousel>
       </el-col>
     </el-row>
-    <div>
-      <PageCard></PageCard>
+    <!-- 帖子展示列表 -->
+    <div class="card-container">
+      <!-- 循环渲染,四个一行 -->
+      <div v-for="(item,index) in pageInfoList" :key="index"  class="card-item">
+        <PageCard :pageInfo="item" @click.native="turnToPageDetailPage">
+        </PageCard>
+      </div>
     </div>
   </container>
 </template>
@@ -129,14 +134,103 @@ export default {
           },
         ],
       ],
+      // 传到卡片里的帖子信息数组
+      pageInfoList: [
+        {
+          // 要显示的图片
+          imgSrc: 'https://shadow.elemecdn.com/app/element/hamburger.9cf7b091-55e9-11e9-a976-7f4d0b07eef6.png',
+          // 头像
+          avatar: require('../../assets/avatar.jpg'),
+          // 帖子标题
+          title: '这是一个帖子',
+          // 发布者
+          publisher: 'Marcus',
+          // 浏览数
+          views: 200,
+        },
+        {
+          // 要显示的图片
+          imgSrc: 'https://shadow.elemecdn.com/app/element/hamburger.9cf7b091-55e9-11e9-a976-7f4d0b07eef6.png',
+          // 头像
+          avatar: require('../../assets/avatar.jpg'),
+          // 帖子标题
+          title: '这是一个帖子',
+          // 发布者
+          publisher: 'Marcus',
+          // 浏览数
+          views: 200,
+        },
+        {
+          // 要显示的图片
+          imgSrc: 'https://shadow.elemecdn.com/app/element/hamburger.9cf7b091-55e9-11e9-a976-7f4d0b07eef6.png',
+          // 头像
+          avatar: require('../../assets/avatar.jpg'),
+          // 帖子标题
+          title: '这是一个帖子',
+          // 发布者
+          publisher: 'Marcus',
+          // 浏览数
+          views: 200,
+        },
+        {
+          // 要显示的图片
+          imgSrc: 'https://shadow.elemecdn.com/app/element/hamburger.9cf7b091-55e9-11e9-a976-7f4d0b07eef6.png',
+          // 头像
+          avatar: require('../../assets/avatar.jpg'),
+          // 帖子标题
+          title: '这是一个帖子',
+          // 发布者
+          publisher: 'Marcus',
+          // 浏览数
+          views: 200,
+        },
+        {
+          // 要显示的图片
+          imgSrc: 'https://shadow.elemecdn.com/app/element/hamburger.9cf7b091-55e9-11e9-a976-7f4d0b07eef6.png',
+          // 头像
+          avatar: require('../../assets/avatar.jpg'),
+          // 帖子标题
+          title: '这是一个帖子',
+          // 发布者
+          publisher: 'Marcus',
+          // 浏览数
+          views: 200,
+        },
+        {
+          // 要显示的图片
+          imgSrc: 'https://shadow.elemecdn.com/app/element/hamburger.9cf7b091-55e9-11e9-a976-7f4d0b07eef6.png',
+          // 头像
+          avatar: require('../../assets/avatar.jpg'),
+          // 帖子标题
+          title: '这是一个帖子',
+          // 发布者
+          publisher: 'Marcus',
+          // 浏览数
+          views: 200,
+        },
+        {
+          // 要显示的图片
+          imgSrc: 'https://shadow.elemecdn.com/app/element/hamburger.9cf7b091-55e9-11e9-a976-7f4d0b07eef6.png',
+          // 头像
+          avatar: require('../../assets/avatar.jpg'),
+          // 帖子标题
+          title: '这是一个帖子',
+          // 发布者
+          publisher: 'Marcus',
+          // 浏览数
+          views: 200,
+        },
+      ],
     };
   },
   components: {
     PageCard,
   },
-  computed: {},
-  mounted: {},
-  methods: {},
+  methods: {
+    turnToPageDetailPage() {
+      this.$router.push({ path: '/PostDetail' });
+    },
+  },
 };
 </script>
 <style scoped>
@@ -208,5 +302,19 @@ export default {
 }
 .carousel{
   padding: 20px 0;
+}
+.card-container{
+  display: flex;
+  flex-wrap: wrap;
+}
+.card-item{
+  width:25%;
+  margin:20px 0;
+}
+.card-item :hover{
+  cursor: pointer;
+}
+.card-item > div{
+  margin: 0 auto;
 }
 </style>
