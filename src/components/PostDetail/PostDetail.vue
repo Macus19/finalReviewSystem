@@ -34,13 +34,50 @@
         </el-col>
       </el-row>
     </div>
+    <!-- 评论区 -->
     <div class="post-comment-area">
-      <div>评论区</div>
+      <div class="post-comment-title">评论区</div>
+      <!-- 切换的选项卡 -->
+      <el-tabs v-model="activeName">
+        <el-tab-pane label="全部" name="all"></el-tab-pane>
+        <el-tab-pane label="精华" name="essence"></el-tab-pane>
+        <el-tab-pane label="最新" name="latest"></el-tab-pane>
+      </el-tabs>
+      <!-- 评论列表 -->
+      <div class="post-comment-list">
+        <div v-for="(item,index) in commentList" :key="index" >
+          <Comment :comment="item"></Comment>
+        </div>
+      </div>
+      <!-- 发布评论区 -->
+      <div class="post-edit-commit">
+        <el-row type="flex" :gutter="10">
+          <!-- 评论框 -->
+          <el-col :span="12">
+            <el-input
+              :placeholder = "commentPlaceholder"
+              v-model="myComment"
+            >
+            </el-input>
+          </el-col>
+          <!-- 发送按钮 -->
+          <el-col :span="2">
+            <el-button type="primary">发送</el-button>
+          </el-col>
+          <!-- 点赞和喜欢 -->
+          <el-col :span="10" class="post-comment-operate">
+            <i class="el-icon-chat-dot-round"></i>
+            <i class="el-icon-star-off"></i>
+          </el-col>
+        </el-row>
+      </div>
     </div>
   </container>
 </template>
 
 <script>
+import Comment from './Components/Comment';
+
 export default {
   data() {
     return {
@@ -51,16 +88,57 @@ export default {
       publishDate: '2020-2-6', // 帖子发布日期
       commentNumber: '12', // 评论数
       likeNumber: '13', // 点赞数
+      activeName: 'all', // tabbar中当前激活的选项
+      // 评论内容列表
+      commentList: [
+        {
+          commenterAvatar: 'https://cube.elemecdn.com/0/88/03b0d39583f48206768a7534e55bcpng.png', // 评论者的头像
+          commenterName: 'Marcus', // 评论者的用户名
+          commentContent: '123', // 评论的具体内容
+          commentTime: '2020-2-14 21:17:00', // 评论的时间
+        },
+        {
+          commenterAvatar: 'https://cube.elemecdn.com/0/88/03b0d39583f48206768a7534e55bcpng.png', // 评论者的头像
+          commenterName: 'Marcus', // 评论者的用户名
+          commentContent: '123', // 评论的具体内容
+          commentTime: '2020-2-14 21:17:00', // 评论的时间
+        },
+        {
+          commenterAvatar: 'https://cube.elemecdn.com/0/88/03b0d39583f48206768a7534e55bcpng.png', // 评论者的头像
+          commenterName: 'Marcus', // 评论者的用户名
+          commentContent: '123', // 评论的具体内容
+          commentTime: '2020-2-14 21:17:00', // 评论的时间
+        },
+        {
+          commenterAvatar: 'https://cube.elemecdn.com/0/88/03b0d39583f48206768a7534e55bcpng.png', // 评论者的头像
+          commenterName: 'Marcus', // 评论者的用户名
+          commentContent: '123', // 评论的具体内容
+          commentTime: '2020-2-14 21:17:00', // 评论的时间
+        },
+      ],
     };
   },
 
-  components: {},
+  components: {
+    Comment,
+  },
+
+  computed: {
+    // 根据发布者的名字动态更改评论框的paceholder
+    commentPlaceholder() {
+      return `@${this.publisherName}`;
+    },
+  },
 
   methods: {},
 };
 
 </script>
 <style scoped>
+.post-top-title{
+  font-size: 30px;
+  font-weight: bold;
+}
 .post-publisher-avatar{
   width:80px;
   height:80px;
@@ -91,7 +169,7 @@ export default {
   text-align: right;
   margin-right:25px;
 }
-.post-comment-area :first-child{
+.post-comment-title{
   height:50px;
   border:1px solid #EDF8EE;
   background-color: #EDF8EE;
@@ -99,5 +177,21 @@ export default {
   color:#808080;
   line-height: 50px;
   padding:10px;
+}
+.post-edit-commit{
+  padding:20px 0;
+}
+.post-comment-operate{
+  font-size: 30px;
+  text-align: right;
+}
+</style>
+<style>
+.el-tabs__item.is-active{
+  color:#67C23A;
+}
+.el-tabs__active-bar{
+  background-color: #67C23A;
+  text-align: right
 }
 </style>
