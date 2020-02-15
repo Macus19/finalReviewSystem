@@ -8,6 +8,7 @@ import DiscussionWorld from '@/components/DiscussionWorld/DiscussionWorld';
 import Index from '@/components/Index/Index';
 import PostDetail from '@/components/PostDetail/PostDetail';
 import PersonalZone from '@/components/PersonalZone/PersonalZone';
+import PersonalInformation from '@/components/PersonalInformation/PersonalInformation';
 
 Vue.use(Router);
 
@@ -52,6 +53,11 @@ export default new Router({
           path: '/PersonalZone',
           name: 'PersonalZone',
           component: PersonalZone,
+        },
+        {
+          path: '/PersonalInformation',
+          name: 'PersonalInformation',
+          component: PersonalInformation,
         },
       ],
     },

@@ -27,7 +27,7 @@
         <i class="el-icon-setting"></i>|
       </el-col>
       <el-col :span="10">
-        {{username}}
+        <span @click="turnToPersonalInfo">{{username}}</span>
       </el-col>
     </el-row>
   </el-col>
@@ -46,6 +46,9 @@ export default {
     // 跳转到个人空间页面
     turnToPersonalZone() {
       this.$router.push({ path: '/PersonalZone' });
+    },
+    turnToPersonalInfo() {
+      this.$router.push({ path: '/PersonalInformation' });
     },
   },
 };
