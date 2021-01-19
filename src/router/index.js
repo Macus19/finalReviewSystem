@@ -9,6 +9,11 @@ import Index from '@/components/Index/Index';
 import PostDetail from '@/components/PostDetail/PostDetail';
 import PersonalZone from '@/components/PersonalZone/PersonalZone';
 import PersonalInformation from '@/components/PersonalInformation/PersonalInformation';
+import VideoContent from '@/components/SourceCenter/components/VideoContent';
+import BookContent from '@/components/SourceCenter/components/BookContent';
+import Group from '@/components/Group/Group';
+import Login from '@/components/Login/Login';
+import Questions from '@/components/Questions/Questions';
 
 Vue.use(Router);
 
@@ -28,6 +33,18 @@ export default new Router({
           path: '/SourceCenter',
           name: 'SourceCenter',
           component: SourceCenter,
+          children: [
+            {
+              path: '/SourceCenter/BookContent',
+              name: 'BookContent',
+              component: BookContent,
+            },
+            {
+              path: '/SourceCenter/VideoContent',
+              name: 'VideoContent',
+              component: VideoContent,
+            },
+          ],
         },
         {
           path: '/ConsolidationExercise',
@@ -59,7 +76,22 @@ export default new Router({
           name: 'PersonalInformation',
           component: PersonalInformation,
         },
+        {
+          path: '/Group',
+          name: 'Group',
+          component: Group,
+        },
       ],
+    },
+    {
+      path: '/login',
+      name: 'Login',
+      component: Login,
+    },
+    {
+      path: '/Questions',
+      name: 'Questions',
+      component: Questions,
     },
   ],
 });

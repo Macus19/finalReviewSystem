@@ -1,7 +1,7 @@
 <template>
   <div class="info-container">
     <div class="personal-info-basic">
-      <p>基本信息</p>
+      <p @click="test">基本信息</p>
       <el-form rel="form" :model="form" label-width="100px">
         <el-form-item label="昵称">
           <el-input class="personal-info-username" v-model="form.username"></el-input>
@@ -61,12 +61,18 @@ export default {
         imgSrc: '', // 用户头像
         realName: '', // 真实姓名
       },
+      list: [
+        '1',
+        '2',
+        '3',
+      ],
     };
   },
 
   components: {},
 
-  methods: {},
+  methods: {
+  },
 };
 </script>
 <style scoped>

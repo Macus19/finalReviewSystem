@@ -15,9 +15,9 @@
       <!-- 发布操作 -->
       <el-col :span="5" class="choose-bar">
         <div class="choose-bar-container">
-          <div class="choose-bar-item">
+          <div class="choose-bar-item" @click="turnToGroup()">
             <i class="el-icon-picture-outline"></i>
-            <p class="choose-bar-text">发图文</p>
+            <p class="choose-bar-text">查看小组</p>
           </div>
           <div class="choose-bar-item">
             <i class="el-icon-edit-outline"></i>
@@ -229,6 +229,9 @@ export default {
   methods: {
     turnToPageDetailPage() {
       this.$router.push({ path: '/PostDetail' });
+    },
+    turnToGroup() {
+      this.$router.push({ path: '/Group' });
     },
   },
 };

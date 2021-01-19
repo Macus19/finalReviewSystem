@@ -16,10 +16,6 @@ export default {
   padding: 0;
   height:100%;
 }
-html{
-}
-body{
-}
 #app{
   height:100%;
 }

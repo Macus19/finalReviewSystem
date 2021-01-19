@@ -1,25 +1,35 @@
 <template>
-  <div>
-      资源中心
+  <div class="source-center-container">
+    <router-view></router-view>
   </div>
 </template>
 
 <script>
+import BookContent from '../SourceCenter/components/BookContent';
+import VideoContent from '../SourceCenter/components/VideoContent';
+
 export default {
   data() {
     return {
+      currentContent: 'BookContent',
     };
   },
 
-  components: {},
+  components: {
+    BookContent,
+    VideoContent,
+  },
 
-  computed: {},
+  // computed: {},
 
-  mounted: {},
+  // mounted: {},
 
-  methods: {},
+  methods: {
+  },
 };
-
 </script>
 <style scoped>
+.source-center-container{
+  height:100%
+}
 </style>
