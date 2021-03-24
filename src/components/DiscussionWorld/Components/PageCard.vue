@@ -1,19 +1,19 @@
 <template>
-  <el-card :body-style="{ padding: '0px' }" class="page-card">
+  <el-card @click.native="turnToPageDetailPage"  :body-style="{ padding: '0px' }" class="page-card">
     <!-- 帖子的标题大图片 -->
-    <img :src="pageInfo.imgSrc" class="page-card-image">
+    <img :src="currentInfo.imgSrc || defaultImgSrc" class="page-card-image">
     <!-- 介绍帖子的信息部分 -->
     <div class="card-introduction">
       <!-- 标题 -->
-      <p class="page-card-title">{{pageInfo.title}}</p>
+      <p class="page-card-title">{{currentInfo.title}}</p>
       <!-- 发布者的信息 -->
       <el-row type="flex" align="middle">
         <el-col :span="12" class="page-card-publisher-info">
-          <img :src="pageInfo.avatar" class="page-card-publisher-avatar">
-          <span class="page-card-publisher-name">{{pageInfo.publisher}}</span>
+          <img :src="currentInfo.avatar ||  defaultAvatar" class="page-card-publisher-avatar">
+          <span class="page-card-publisher-name">{{currentInfo.author_nickname}}</span>
         </el-col>
         <el-col :span="12" class="page-card-views">
-          {{pageInfo.views}}浏览
+          {{currentInfo.view}}浏览
         </el-col>
       </el-row>
       <!-- 更多操作 -->
@@ -27,27 +27,39 @@
 
 <script>
 export default {
-  data() {
-    return {
-      // // 要显示的图片
-      // imgSrc: 'https://shadow.elemecdn.com/app/element/hamburger.9cf7b091-55e9-11e9-a976-7f4d0b07eef6.png',
-      // // 头像
-      // avatar: require('../../../assets/avatar.jpg'),
-      // // 帖子标题
-      // title: '这是一个帖子',
-      // // 发布者
-      // publisher: 'Marcus',
-      // // 浏览数
-      // views: 200,
-    };
-  },
   props: {
     pageInfo: Object,
   },
+  data() {
+    return {
+      // 默认显示图片
+      defaultImgSrc: 'https://shadow.elemecdn.com/app/element/hamburger.9cf7b091-55e9-11e9-a976-7f4d0b07eef6.png',
+      // 默认头像
+      defaultAvatar: require('../../../assets/avatar.jpg'),
+    };
+  },
 
-  components: {},
+  computed: {
+    currentInfo() {
+      return this.pageInfo;
+    },
+  },
+  components: {
+  },
 
   methods: {
+    /**
+     * 跳转至帖子详情页面
+     */
+    turnToPageDetailPage() {
+      console.log(this.currentInfo.id);
+      this.$router.push({
+        name: 'PostDetail',
+        params: {
+          id: this.currentInfo.id,
+        },
+      });
+    },
   },
 };
 

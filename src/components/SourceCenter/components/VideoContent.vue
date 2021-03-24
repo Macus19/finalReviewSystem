@@ -34,9 +34,10 @@
     <el-col :span="20">
       <el-col :span="6" v-for="(item, index) in videoList" :key="index">
         <video-card
-          :pic="item.pic"
-          :videoName="item.videoName"
-          :intro="item.intro"
+          :pic="item.photo"
+          :videoName="item.title"
+          :intro="item.description"
+          :link="item.link"
         ></video-card>
       </el-col>
     </el-col>
@@ -103,7 +104,27 @@ export default {
     VideoCard,
   },
 
-  methods: {},
+  created() {
+    this.getVedioList();
+  },
+
+  methods: {
+    getVedioList() {
+      this.axios({
+        url: '/api/resource/getVideoList',
+        method: 'POST',
+        data: {
+          token: sessionStorage.getItem('token'),
+          data: {
+            per_page: 10,
+            page: 1,
+          },
+        },
+      }).then((res) => {
+        this.videoList = res.data.data.data;
+      });
+    },
+  },
 };
 
 </script>

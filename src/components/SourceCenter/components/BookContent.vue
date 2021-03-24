@@ -14,8 +14,6 @@
         </template>
         <el-submenu index="1">
           <template slot="title">课内电子书</template>
-          <el-menu-item index="1-1">分析型阅读</el-menu-item>
-          <el-menu-item index="1-2">XXX阅读</el-menu-item>
         </el-submenu>
         <el-submenu index="2">
           <template slot="title">英文原版书籍</template>
@@ -43,9 +41,10 @@
       <el-row class="book-content-right-main">
         <el-col :span="6" v-for="(item, index) in bookList" :key="index">
           <book-card
-            :pic="item.pic"
-            :bookName="item.bookName"
-            :intro="item.intro"
+            :pic="item.photo"
+            :bookName="item.title"
+            :intro="item.description"
+            :link="item.link"
           ></book-card>
         </el-col>
       </el-row>
@@ -59,6 +58,7 @@ import BookCard from './BookCard';
 export default {
   data() {
     return {
+      currentPage: 1,
       bookList: [
         {
           pic: 'https://shadow.elemecdn.com/app/element/hamburger.9cf7b091-55e9-11e9-a976-7f4d0b07eef6.png',
@@ -108,7 +108,26 @@ export default {
     BookCard,
   },
 
-  methods: {},
+  created() {
+    this.getBookList();
+  },
+  methods: {
+    getBookList() {
+      this.axios({
+        url: '/api/resource/getEbookList',
+        method: 'POST',
+        data: {
+          token: sessionStorage.getItem('token'),
+          data: {
+            per_page: 10,
+            page: 1,
+          },
+        },
+      }).then((res) => {
+        this.bookList = res.data.data.data;
+      });
+    },
+  },
 };
 </script>
 <style scoped>

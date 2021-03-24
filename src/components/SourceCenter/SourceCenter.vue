@@ -1,6 +1,6 @@
 <template>
   <div class="source-center-container">
-    <router-view></router-view>
+    <router-view class="view"></router-view>
   </div>
 </template>
 
@@ -29,7 +29,8 @@ export default {
 };
 </script>
 <style scoped>
-.source-center-container{
-  height:100%
+.source-center-container, .view{
+  min-height:80vh
 }
+
 </style>

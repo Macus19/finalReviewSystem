@@ -33,7 +33,7 @@
           :page-size="pageSize"
         >
         </el-pagination>
-        <el-button class="submit-btn" type="primary">提交</el-button>
+        <el-button class="submit-btn" @click="submitQuestion()" type="primary">提交</el-button>
       </div>
     </div>
   </div>
@@ -447,6 +447,36 @@ export default {
   methods: {
     handleCurrentChange(val) {
       this.currentPage = val;
+    },
+    getAnswer() {
+      const answer = {};
+      this.questionList.forEach((item, index) => {
+        answer[`q${index + 1}`] = item.answer;
+      });
+      return answer;
+    },
+    submitQuestion() {
+      // eslint-disable-next-line no-console
+      console.log(this.getAnswer());
+      this.axios({
+        url: '/api/questionnaire/retrieveQuestionnaire',
+        method: 'POST',
+        data: {
+          token: sessionStorage.getItem('token'),
+          data: {
+            questionnaire: this.getAnswer(),
+          },
+        },
+      }).then((res) => {
+        // eslint-disable-next-line no-console
+        if (res.data.code === 0) {
+          this.$message({
+            message: res.data.msg,
+            type: 'success',
+          });
+          this.$router.push({ path: '/' });
+        }
+      });
     },
   },
 };

@@ -19,7 +19,7 @@
             <i class="el-icon-picture-outline"></i>
             <p class="choose-bar-text">查看小组</p>
           </div>
-          <div class="choose-bar-item">
+          <div class="choose-bar-item" @click="turnToEditPost()">
             <i class="el-icon-edit-outline"></i>
             <p class="choose-bar-text">发帖子</p>
           </div>
@@ -66,7 +66,7 @@
     <div class="card-container">
       <!-- 循环渲染,四个一行 -->
       <div v-for="(item,index) in pageInfoList" :key="index"  class="card-item">
-        <PageCard :pageInfo="item" @click.native="turnToPageDetailPage">
+        <PageCard :pageInfo="item">
         </PageCard>
       </div>
     </div>
@@ -226,12 +226,33 @@ export default {
   components: {
     PageCard,
   },
+  mounted() {
+    this.getPostList();
+  },
   methods: {
-    turnToPageDetailPage() {
-      this.$router.push({ path: '/PostDetail' });
+    getPostList() {
+      this.axios({
+        url: '/api/post/getPostList',
+        method: 'POST',
+        data: {
+          token: this.global.token,
+          data: {
+            per_page: 10,
+            page: 1,
+          },
+        },
+      }).then((res) => {
+        this.pageInfoList = res.data.data.data;
+      });
     },
+    // turnToPageDetailPage() {
+    //   this.$router.push({ path: '/PostDetail' });
+    // },
     turnToGroup() {
       this.$router.push({ path: '/Group' });
+    },
+    turnToEditPost() {
+      this.$router.push({ path: '/EditPost' });
     },
   },
 };

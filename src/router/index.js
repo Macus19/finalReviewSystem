@@ -14,6 +14,7 @@ import BookContent from '@/components/SourceCenter/components/BookContent';
 import Group from '@/components/Group/Group';
 import Login from '@/components/Login/Login';
 import Questions from '@/components/Questions/Questions';
+import EditPost from '@/components/EditPost/EditPost';
 
 Vue.use(Router);
 
@@ -80,6 +81,11 @@ export default new Router({
           path: '/Group',
           name: 'Group',
           component: Group,
+        },
+        {
+          path: '/EditPost',
+          name: 'EditPost',
+          component: EditPost,
         },
       ],
     },

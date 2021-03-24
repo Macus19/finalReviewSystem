@@ -1,5 +1,5 @@
 <template>
-  <el-card class="video-card-container" :body-style="{ padding: '0px' }">
+  <el-card @click="jumpTo" class="video-card-container" :body-style="{ padding: '0px' }">
     <div class="video-card-banner">
       <img :src="pic" class="video-card-image" />
       <i class="el-icon-video-play"></i>
@@ -18,13 +18,18 @@ export default {
   },
 
   components: {},
-  props: ['pic', 'videoName', 'intro'],
-  methods: {},
+  props: ['pic', 'videoName', 'intro', 'link'],
+  methods: {
+    jumpTo() {
+      window.open(this.link);
+    },
+  },
 };
 </script>
 <style scoped>
 .video-card-container{
     margin: 20px;
+    cursor: pointer;
 }
 .video-card-image{
     width:100%

@@ -13,7 +13,7 @@ module.exports = {
     proxyTable: {
       '/api': {
         // 测试环境
-        target: 'http://203.195.139.217/en/public/index.php',
+        target: 'http://test.ameow.xyz/en/public/index.php',
         changeOrigin: true,  //是否跨域
         pathRewrite: {
             '^/api': ''   //需要rewrite重写的,

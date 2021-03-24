@@ -25,6 +25,8 @@ module.exports = {
   },
   // add your custom rules here
   rules: {
+    "max-len": 0,
+    "no-console": 0,//禁止使用console
     // don't require .vue extension when importing
     'import/extensions': ['error', 'always', {
       js: 'never',

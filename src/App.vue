@@ -7,6 +7,9 @@
 <script>
 export default {
   name: 'App',
+  mounted() {
+    this.global.token = sessionStorage.getItem('token');
+  },
 };
 </script>
 
@@ -15,6 +18,7 @@ export default {
   margin:0;
   padding: 0;
   height:100%;
+  overflow-x: hidden
 }
 #app{
   height:100%;

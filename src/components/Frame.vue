@@ -55,21 +55,12 @@ export default {
 </script>
 <style scoped>
 .frame {
-  min-width: 1500px;
-  /* overflow-x: scroll; */
   min-height: 100%;
-  position: relative;
+  display: flex;
+  flex-direction: column;
 }
 .main {
-  margin: 0 auto;
-  height: auto;
-  overflow: hidden;
-  padding-bottom: 210px;
-}
-.footer {
-  width: 100%;
-  position: absolute;
-  bottom: 0;
+  flex: 1;
 }
 .home-page-header{
   padding: 10px 0;

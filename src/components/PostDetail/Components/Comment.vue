@@ -2,13 +2,13 @@
   <div class="comment-container">
       <el-row type="flex">
           <el-col :span="4" class="commenter-avatar">
-            <el-avatar shape="square" :size="80" :src="comment.commenterAvatar"></el-avatar>
+            <el-avatar shape="square" :size="80" :src="comment.user_Avatar || defaultAvatar"></el-avatar>
           </el-col>
           <el-col :span="20">
-            <p class="commenter-name">{{comment.commenterName}}</p>
-            <p class="comment-content">{{comment.commentContent}}</p>
+            <p class="commenter-name">{{comment.user_nickname}}</p>
+            <p class="comment-content">{{comment.content}}</p>
             <div class="comment-extra-info">
-                <span class="comment-time">{{comment.commentTime}}</span>
+                <span class="comment-time">{{comment.time}}</span>
             </div>
           </el-col>
       </el-row>
@@ -20,6 +20,7 @@
 export default {
   data() {
     return {
+      defaultAvatar: 'https://cube.elemecdn.com/0/88/03b0d39583f48206768a7534e55bcpng.png',
     };
   },
   components: {},

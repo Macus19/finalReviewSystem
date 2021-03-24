@@ -1,6 +1,6 @@
 <template>
 <el-row type="flex" align="middle">
-  <el-col :span="4" class="left-box">
+  <el-col :span="3" class="left-box">
     期末复习系统
   </el-col>
   <el-col :span="16">
@@ -22,7 +22,7 @@
       <el-menu-item index="/DiscussionWorld">讨论天地</el-menu-item>
     </el-menu>
   </el-col>
-  <el-col :span="4" class="right-box">
+  <el-col :span="5" class="right-box">
     <el-row v-if="!isLogin">
       <span @click="turnToLoginPage('login')">登录</span>
         <span>|</span>

@@ -1,5 +1,5 @@
 <template>
-    <el-card class="book-card-container" :body-style="{ padding: '0px' }">
+    <el-card @click.native="jumpLink" class="book-card-container" :body-style="{ padding: '0px' }">
         <img :src="pic" class="book-card-image">
         <div>
             <span>{{bookName}}</span>
@@ -14,16 +14,21 @@ export default {
     return {
     };
   },
-  props: ['pic', 'bookName', 'intro'],
+  props: ['pic', 'bookName', 'intro', 'link'],
   components: {},
 
-  methods: {},
+  methods: {
+    jumpLink() {
+      window.open(this.link);
+    },
+  },
 };
 
 </script>
 <style scoped>
 .book-card-container{
     margin: 20px;
+    cursor: pointer;
 }
 .book-card-image{
     width:100%

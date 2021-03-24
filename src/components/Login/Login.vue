@@ -87,6 +87,7 @@ export default {
         // eslint-disable-next-line no-console
         if (res.data.code === 0) {
           this.global.token = res.data.data.token;
+          sessionStorage.setItem('token', res.data.data.token);
           this.$message({
             message: '登录成功！',
             type: 'success',
