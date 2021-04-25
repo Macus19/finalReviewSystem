@@ -16,7 +16,7 @@
       </el-col>
     </el-row>
     <!-- 帖子的具体内容 -->
-    <div class="post-article">{{articles.content}}</div>
+    <div class="post-article" v-html="articles.content"></div>
     <!-- 附加消息 -->
     <div class="post-extra-info">
       <p>本文由楼主发布在XX平台，未经楼主许可，禁止转载。</p>
@@ -67,7 +67,7 @@
           <!-- 点赞和喜欢 -->
           <el-col :span="10" class="post-comment-operate">
             <i class="el-icon-chat-dot-round"></i>
-            <LikeIcon class="like-icon" :postid="id"></LikeIcon>
+            <LikeIcon @post="getPostDetail" class="like-icon" :postid="id"></LikeIcon>
           </el-col>
         </el-row>
       </div>
@@ -125,6 +125,7 @@ export default {
           commentTime: '2020-2-14 21:17:00', // 评论的时间
         },
       ],
+      likeStatus: 0,
     };
   },
 
@@ -154,7 +155,7 @@ export default {
         url: '/api/post/getPost',
         method: 'POST',
         data: {
-          token: this.global.token,
+          token: sessionStorage.getItem('token'),
           data: {
             post: this.id,
           },
@@ -182,7 +183,7 @@ export default {
         url: '/api/post/getCommentList',
         method: 'POST',
         data: {
-          token: this.global.token,
+          token: sessionStorage.getItem('token'),
           data: {
             post: this.id,
             per_page: 10,
@@ -209,7 +210,7 @@ export default {
         url: '/api/post/commentPost',
         method: 'POST',
         data: {
-          token: this.global.token,
+          token: sessionStorage.getItem('token'),
           data: {
             post: this.id,
             content: this.myComment,
@@ -221,6 +222,7 @@ export default {
             message: '评论发送成功！',
             type: 'success',
           });
+          this.getPostComment();
         } else {
           this.$message({
             message: '评论失败！',

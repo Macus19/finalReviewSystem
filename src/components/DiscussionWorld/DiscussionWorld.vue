@@ -235,7 +235,7 @@ export default {
         url: '/api/post/getPostList',
         method: 'POST',
         data: {
-          token: this.global.token,
+          token: sessionStorage.getItem('token'),
           data: {
             per_page: 10,
             page: 1,

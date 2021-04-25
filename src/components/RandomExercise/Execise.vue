@@ -24,9 +24,9 @@
               ><el-input v-model="fillList[index]" class="input-text"></el-input>
             </div>
           </div>
-          <div class="btn-container">
+          <!-- <div class="btn-container">
             <el-button @click="handleClick" type="primary">提交</el-button>
-          </div>
+          </div> -->
         </div>
       </el-tab-pane>
       <el-tab-pane label="单项选择">
@@ -37,7 +37,10 @@
             :key="index"
             class="single-choice-answer"
           >
-            <p>{{ index + 1 }}. {{ item.question }}</p>
+            <p>
+              {{ index + 1 }}. {{ item.question }}
+              <el-input class="input-text" v-model="singleChoice[index]"></el-input>
+            </p>
           </div>
         </div>
       </el-tab-pane>
@@ -45,23 +48,48 @@
         <p class="passage">{{ translation.question }}</p>
         <p>请输入答案</p>
         <el-input v-model="translations" :col="30" type="textarea"></el-input>
-        <div class="btn-container">
+        <!-- <div class="btn-container">
           <el-button @click="handleClick" type="primary">提交</el-button>
-        </div>
+        </div> -->
       </el-tab-pane>
-      <el-tab-pane label="阅读理解">
+      <el-tab-pane label="阅读理解(1)">
         <div>
-          <p class="passage">{{ reading.passage }}</p>
-          <div v-for="item in reading.questions" :key="item.question">
+          <p class="passage">{{ reading1.passage }}</p>
+          <div v-for="item in reading1.question" :key="item.option">
             <div class="reading-choose">
               <p v-for="(option, index) in item" :key="index">{{ option }}</p>
             </div>
           </div>
           <p>请选择答案</p>
           <div>
-            <div v-for="(item, index) in reading.questions.length" :key="item">
+            <div v-for="(item, index) in reading1.question.length" :key="item">
               <span>{{ item }}.</span>
-              <el-radio-group v-model="readingAnswer[index]">
+              <el-radio-group v-model="readingAnswer1[index]">
+                <el-radio label="A">A</el-radio>
+                <el-radio label="B">B</el-radio>
+                <el-radio label="C">C</el-radio>
+                <el-radio label="D">D</el-radio>
+              </el-radio-group>
+            </div>
+          </div>
+          <!-- <div class="btn-container">
+            <el-button  @click="handleClick" type="primary">提交</el-button>
+          </div> -->
+        </div>
+      </el-tab-pane>
+      <el-tab-pane label="阅读理解(2)">
+        <div>
+          <p class="passage">{{ reading2.passage }}</p>
+          <div v-for="item in reading2.question" :key="item.option">
+            <div class="reading-choose">
+              <p v-for="(option, index) in item" :key="index">{{ option }}</p>
+            </div>
+          </div>
+          <p>请选择答案</p>
+          <div>
+            <div v-for="(item, index) in reading2.question.length" :key="item">
+              <span>{{ item }}.</span>
+              <el-radio-group v-model="readingAnswer2[index]">
                 <el-radio label="A">A</el-radio>
                 <el-radio label="B">B</el-radio>
                 <el-radio label="C">C</el-radio>
@@ -82,9 +110,11 @@
 export default {
   data() {
     return {
-      fillList: [],
+      fillList: Array(15).fill(''),
       translations: '',
-      readingAnswer: ['A'],
+      singleChoice: Array(10).fill(''),
+      readingAnswer1: Array(5).fill(''),
+      readingAnswer2: Array(5).fill(''),
     };
   },
 
@@ -92,6 +122,10 @@ export default {
     content: {
       type: Object,
       default: null,
+    },
+    id: {
+      type: Number,
+      default: 1,
     },
   },
   components: {},
@@ -104,8 +138,12 @@ export default {
         ),
       };
     },
-    reading() {
-      return this.content.reading;
+    reading1() {
+      console.log(this.content.reading[0]);
+      return this.content.reading[0];
+    },
+    reading2() {
+      return this.content.reading[1];
     },
     single_choice() {
       return this.content.single_choice;
@@ -117,11 +155,38 @@ export default {
   mounted() {
     console.log(this.content);
   },
+  updated() {
+    console.log(this.content);
+  },
   methods: {
+    /**
+     * 提交试卷
+     */
     handleClick() {
-      this.$message({
-        message: '提交成功！',
-        type: 'success',
+      console.log(1);
+      this.axios({
+        url: 'api/realq/submitRealq',
+        method: 'POST',
+        data: {
+          token: sessionStorage.getItem('token'),
+          data: {
+            realq_id: this.id,
+            answer: {
+              reading1: this.readingAnswer1,
+              reading2: this.readingAnswer2,
+              fill_in: this.fillList,
+              single_choice: this.singleChoice,
+              translation: this.translations,
+            },
+          },
+        },
+      }).then((res) => {
+        if (res.data.code === 0) {
+          this.$message({
+            message: `您获得的分数是${res.data.data.total}！`,
+            type: 'success',
+          });
+        }
       });
     },
   },

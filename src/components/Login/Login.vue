@@ -124,6 +124,8 @@ export default {
             message: '注册成功！',
             type: 'success',
           });
+          this.global.token = res.data.data.token;
+          sessionStorage.setItem('token', res.data.data.token);
           this.$router.push({
             path: '/Questions',
           });

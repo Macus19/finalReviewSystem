@@ -58,7 +58,12 @@
               </el-col>
             </el-row>
           </el-tab-pane>
-          <el-tab-pane label="笔记">暂无</el-tab-pane>
+          <el-tab-pane label="笔记">
+            <div class="note-list">
+               <note-item v-for="item in noteList" :key="item.id" :id="item.id" :title="item.title" :time="item.time"></note-item>
+            </div>
+            <el-button type="primary" @click="turnToEditNote">添加笔记</el-button>
+          </el-tab-pane>
         </el-tabs>
       </el-col>
       <!-- <el-col :span="8">
@@ -93,13 +98,16 @@
 
 <script>
 import * as echarts from 'echarts';
+import NoteItem from './Components/NoteItem';
 import QuestionSetCard from './Components/QuantioSetCard';
 
 export default {
   data() {
     return {
+      currentPage: 1,
       activeName: 'second',
       orgOptions: {},
+      noteList: [],
       userAvatar:
         'https://shadow.elemecdn.com/app/element/hamburger.9cf7b091-55e9-11e9-a976-7f4d0b07eef6.png', // 用户头像
       username: 'Marcus', // 用户名
@@ -154,9 +162,11 @@ export default {
 
   components: {
     QuestionSetCard,
+    NoteItem,
   },
 
   mounted() {
+    this.getNoteList();
     // 基于准备好的dom，初始化echarts实例
     const myChart = echarts.init(document.getElementById('radar'));
     // 绘制图表
@@ -210,7 +220,30 @@ export default {
     });
   },
 
-  methods: {},
+  methods: {
+    getNoteList() {
+      this.axios({
+        url: 'api/note/getNoteList',
+        method: 'POST',
+        data: {
+          token: sessionStorage.getItem('token'),
+          data: {
+            page: this.currentPage,
+          },
+        },
+      }).then((res) => {
+        if (res.data.code === 0) {
+          console.log(res.data.data.data);
+          this.noteList = res.data.data.data;
+        }
+      });
+    },
+    turnToEditNote() {
+      this.$router.push({
+        path: '/EditNote',
+      });
+    },
+  },
 };
 </script>
 <style scoped>
@@ -296,5 +329,10 @@ export default {
 .radar-title{
   font-size: 24px;
   font-weight: bold;
+}
+.note-list{
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
 }
 </style>

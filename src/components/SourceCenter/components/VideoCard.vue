@@ -1,12 +1,12 @@
 <template>
   <el-card @click="jumpTo" class="video-card-container" :body-style="{ padding: '0px' }">
     <div class="video-card-banner">
-      <img :src="pic" class="video-card-image" />
+      <img :src="`http://test.ameow.xyz/en/public/${pic}`" class="video-card-image" />
       <i class="el-icon-video-play"></i>
     </div>
     <div>
-      <span>{{videoName}}</span>
-      <p>{{intro}}</p>
+      <span class="title">{{videoName}}</span>
+      <p class="intro">{{intro}}</p>
     </div>
   </el-card>
 </template>
@@ -28,11 +28,18 @@ export default {
 </script>
 <style scoped>
 .video-card-container{
+    height: 300px;
     margin: 20px;
     cursor: pointer;
 }
 .video-card-image{
-    width:100%
+    width:100%;
+    height: 180px;
+}
+.title{
+  font-size: 20px;
+  font-weight: bold;
+  text-align: center;
 }
 .video-card-banner {
     position: relative;
@@ -44,5 +51,11 @@ export default {
     top: 50%;
     left: 50%;
     transform: translateX(-50%) translateY(-50%);
+}
+.intro{
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 3;
+  overflow: hidden;
 }
 </style>

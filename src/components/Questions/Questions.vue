@@ -474,7 +474,7 @@ export default {
             message: res.data.msg,
             type: 'success',
           });
-          this.$router.push({ path: '/' });
+          this.$router.push({ path: '/Target' });
         }
       });
     },

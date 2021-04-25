@@ -15,6 +15,9 @@ import Group from '@/components/Group/Group';
 import Login from '@/components/Login/Login';
 import Questions from '@/components/Questions/Questions';
 import EditPost from '@/components/EditPost/EditPost';
+import EditNote from '@/components/Note/EditNote';
+import NoteDetail from '@/components/Note/NoteDetail';
+import Target from '@/components/TargetPage/Target';
 
 Vue.use(Router);
 
@@ -63,7 +66,7 @@ export default new Router({
           component: DiscussionWorld,
         },
         {
-          path: '/PostDetail',
+          path: '/PostDetail/:id',
           name: 'PostDetail',
           component: PostDetail,
         },
@@ -87,6 +90,16 @@ export default new Router({
           name: 'EditPost',
           component: EditPost,
         },
+        {
+          path: '/EditNote',
+          name: 'EditNote',
+          component: EditNote,
+        },
+        {
+          path: '/NoteDetail/:id',
+          name: 'NoteDetail',
+          component: NoteDetail,
+        },
       ],
     },
     {
@@ -98,6 +111,11 @@ export default new Router({
       path: '/Questions',
       name: 'Questions',
       component: Questions,
+    },
+    {
+      path: '/Target',
+      name: 'Target',
+      component: Target,
     },
   ],
 });

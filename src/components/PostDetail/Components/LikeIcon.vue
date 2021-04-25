@@ -34,7 +34,7 @@ export default {
         url: '/api/post/getLikeStatus',
         method: 'POST',
         data: {
-          token: this.global.token,
+          token: sessionStorage.getItem('token'),
           data: {
             post: this.initPostId,
           },
@@ -53,7 +53,7 @@ export default {
           url: `/api/post/${path}`,
           method: 'POST',
           data: {
-            token: this.global.token,
+            token: sessionStorage.getItem('token'),
             data: {
               post: this.initPostId,
             },
@@ -64,6 +64,7 @@ export default {
               message: infoMessage,
               type: 'success',
             });
+            this.$emit('post', true);
           }
         });
       }

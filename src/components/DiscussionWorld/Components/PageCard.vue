@@ -54,10 +54,7 @@ export default {
     turnToPageDetailPage() {
       console.log(this.currentInfo.id);
       this.$router.push({
-        name: 'PostDetail',
-        params: {
-          id: this.currentInfo.id,
-        },
+        path: `/PostDetail/${this.currentInfo.id}`,
       });
     },
   },

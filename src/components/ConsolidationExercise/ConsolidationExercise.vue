@@ -1,3 +1,4 @@
+/* eslint-disable no-unreachable */
 <template>
   <div class="consolidation-exercise-container">
     <div class="container-top">
@@ -6,7 +7,7 @@
     </div>
     <el-row type="flex" class="container-main">
       <!-- 左侧菜单栏 -->
-      <el-col :span="4">
+      <el-col class="unit-choose" :span="4">
         <p class="container-main-menu-title">
           <i class="el-icon-s-order"></i>
           单元选择
@@ -14,27 +15,23 @@
         <el-menu
           background-color="#0B8C56"
           text-color="#fff"
-          default-active="1"
+          default-active="j1"
           active-text-color="#66EE8E"
+          @select="changeTab"
         >
-          <el-menu-item index="1">U1</el-menu-item>
-          <el-menu-item index="2">U2</el-menu-item>
-          <el-menu-item index="3">U3</el-menu-item>
-          <el-menu-item index="4">U4</el-menu-item>
-          <el-menu-item index="5">U5</el-menu-item>
+          <el-menu-item :index="item" v-for="item in unitList" :key="item">{{item}}</el-menu-item>
         </el-menu>
       </el-col>
       <el-col :span="20">
-        <el-tabs stretch v-model="activeTab" type="card">
+        <el-tabs stretch v-model="activeTab" @tab-click="getExecise()" type="card">
           <!-- <el-tab-pane label="单项选择">单项选择</el-tab-pane> -->
-          <el-tab-pane label="选词填空">
+          <el-tab-pane label="选词填空" name="fill_in">
             <div
+              class="fill-in-text"
               v-for="item in execise.fill_in[0].questions"
               :key="item.question"
             >
-              <p v-for="(option, index) in item" :key="index">
-                {{ item.question }}
-              </p>
+              {{ item.question }}
             </div>
             <p>选项：</p>
             <div>
@@ -47,16 +44,16 @@
             </div>
             <p>填下答案：</p>
             <div class="fill-in-answer">
-              <div class="fill-in-input" v-for="index in 4" :key="index">
+              <div class="fill-in-input" v-for="index in execise.fill_in[0].questions.length" :key="index">
                 <span>{{ index }}</span
-                ><el-input v-model="fillList[index]" class="input-text"></el-input>
+                ><el-input v-model="fillList[index-1]" class="input-text"></el-input>
               </div>
             </div>
              <div class="btn-container">
             <el-button @click="handleClick" type="primary">提交</el-button>
           </div>
           </el-tab-pane>
-          <el-tab-pane label="中英翻译">
+          <el-tab-pane label="中英翻译" name="translation">
             <div v-for="item in execise.translation" :key="item.question">
               <div class="reading-choose">
                 <p v-for="(option, index) in item" :key="index">{{ option }}</p>
@@ -81,15 +78,15 @@
               </div>
             </div>
           </el-tab-pane>
-          <el-tab-pane label="阅读理解">
+          <el-tab-pane label="阅读理解" name="comprehesion">
             <p class="passage">{{ execise.comprehension.passage }}</p>
             <div
-              v-for="item in execise.comprehension.questions"
+              v-for="item in readingAnswer"
               :key="item.question"
             >
-              <div class="reading-choose">
+              <!-- <div class="reading-choose">
                 <p v-for="(option, index) in item" :key="index">{{ option }}</p>
-              </div>
+              </div> -->
             </div>
             <p>请选择答案</p>
             <div>
@@ -113,6 +110,20 @@
         </el-tabs>
       </el-col>
     </el-row>
+    <el-dialog title="" :visible.sync="isShowDialog">
+      <div>
+        <p>答案：</p>
+        <span class="ans" v-for="item in correctAns.key" :key="item">{{item}}</span>
+      </div>
+      <div>
+        正确题号：
+        <span class="ans" v-for="item in correctAns.right" :key="item">{{item}}</span>
+      </div>
+      <div>
+        错误题号：
+        <span class="ans" v-for="item in correctAns.wrong" :key="item">{{item}}</span>
+      </div>
+    </el-dialog>
   </div>
 </template>
 
@@ -120,6 +131,9 @@
 export default {
   data() {
     return {
+      activeTab: 'fill_in',
+      activeUnit: '',
+      unitList: [],
       fillList: [],
       readingAnswer: [],
       translationAnswer: [],
@@ -521,38 +535,93 @@ export default {
           },
         ],
       },
+      correctAns: {},
     };
   },
 
   components: {},
 
   mounted() {
-    this.getExecise('comprehension');
-    this.getExecise('translation');
-    this.getExecise('single_choice');
-    this.getExecise('fill_in');
+    this.getExeciseList();
+    // this.getExecise('comprehension');
+    // this.getExecise('translation');
+    // this.getExecise('single_choice');
+    // this.getExecise('fill_in');
+  },
+  computed: {
   },
   methods: {
-    getExecise(typeName) {
+    getExeciseList() {
+      this.axios({
+        url: 'api/exercise/getExerciseList',
+        method: 'POST',
+        data: {
+          token: sessionStorage.getItem('token'),
+          data: {
+            type: this.activeTab,
+          },
+        },
+      }).then((res) => {
+        if (res.data.code === 0) {
+          this.unitList = res.data.data.map(item => item.unit);
+        }
+      });
+    },
+    changeTab(key) {
+      this.activeUnit = key;
+      this.getExecise();
+    },
+    getExecise() {
       this.axios({
         url: '/api/exercise/getExercise',
         method: 'POST',
         data: {
           token: 'login',
           data: {
-            type: typeName,
-            unit: 'j1',
+            type: this.activeTab,
+            unit: this.activeUnit,
           },
         },
       }).then((res) => {
-        this.execise[typeName] = res.data.data;
-        console.log(this.execise[typeName]);
+        this.execise[this.activeTab] = res.data.data;
+        console.log(this.execise[this.activeTab]);
       });
     },
     handleClick() {
-      this.$message({
-        message: '提交成功！',
-        type: 'success',
+      let data = null;
+      switch (this.activeTab) {
+        case 'comprehesion':
+          data = Array(this.execise.comprehension.questions.length).fill('');
+          data = data.map((item, index) => (this.readingAnswer[index] ? this.readingAnswer[index] : item));
+          break;
+        case 'translation':
+          data = Array(this.execise.translation.length).fill('');
+          data = data.map((item, index) => (this.translationAnswer[index] ? this.translationAnswer[index] : item));
+          break;
+        case 'fill_in':
+          data = Array(this.execise.fill_in[0].questions.length).fill('');
+          data = data.map((item, index) => (this.fillList[index] ? this.fillList[index] : item));
+          break;
+        default:
+          break;
+      }
+      console.log(data);
+      this.axios({
+        url: 'api/exercise/submitExercise',
+        method: 'POST',
+        data: {
+          token: sessionStorage.getItem('token'),
+          data: {
+            type: this.activeTab,
+            unit: this.activeUnit,
+            answer: data,
+          },
+        },
+      }).then((res) => {
+        if (res.data.code === 0) {
+          this.isShowDialog = true;
+          this.correctAns = res.data.data;
+        }
       });
     },
   },
@@ -600,11 +669,10 @@ export default {
 }
 .container-main /deep/ .el-menu {
   border-right: 0;
-  height: 78vh;
 }
 .el-tab-pane {
   padding: 0 30px;
-  height: 70vh;
+  height: 85vh;
   overflow-y: scroll;
 }
 .passage {
@@ -632,5 +700,15 @@ export default {
 .btn-container {
   text-align: center;
   margin: 20px 0;
+}
+.unit-choose{
+  /* height: 85vh; */
+  overflow-y: scroll;
+}
+.fill-in-text{
+  margin: 10px 0;
+}
+.ans{
+  margin: 10px;
 }
 </style>

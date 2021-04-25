@@ -17,8 +17,13 @@
         <el-menu-item index="/SourceCenter/BookContent">电子书资源</el-menu-item>
         <el-menu-item index="/SourceCenter/VideoContent">视频资源</el-menu-item>
       </el-submenu>
-      <el-menu-item index="/ConsolidationExercise">巩固练习</el-menu-item>
-      <el-menu-item index="/RandomExercise">随机练习</el-menu-item>
+      <el-submenu>
+        <template slot="title">习题练习</template>
+        <el-menu-item index="/ConsolidationExercise">巩固练习</el-menu-item>
+        <el-menu-item index="/RandomExercise">随机练习</el-menu-item>
+      </el-submenu>
+      <!-- <el-menu-item index="/ConsolidationExercise">巩固练习</el-menu-item>
+      <el-menu-item index="/RandomExercise">随机练习</el-menu-item> -->
       <el-menu-item index="/DiscussionWorld">讨论天地</el-menu-item>
     </el-menu>
   </el-col>
@@ -53,11 +58,11 @@ export default {
   },
   components: {},
   mounted() {
-    this.isLogin = this.global.token.length !== 0;
+    this.isLogin = sessionStorage.getItem('token').length !== 0;
   },
   methods: {
     logout() {
-      this.global.token = '';
+      sessionStorage.removeItem('token');
       this.isLogin = false;
       location.reload();
     },

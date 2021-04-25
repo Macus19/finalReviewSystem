@@ -1,9 +1,9 @@
 <template>
     <el-card @click.native="jumpLink" class="book-card-container" :body-style="{ padding: '0px' }">
-        <img :src="pic" class="book-card-image">
+        <img :src="`http://test.ameow.xyz/en/public/${pic}`" class="book-card-image">
         <div>
-            <span>{{bookName}}</span>
-            <p>{{intro}}</p>
+            <span class="title">{{bookName}}</span>
+            <p class="intro">{{intro}}</p>
         </div>
     </el-card>
 </template>
@@ -27,10 +27,23 @@ export default {
 </script>
 <style scoped>
 .book-card-container{
+    height: 300px;
     margin: 20px;
     cursor: pointer;
 }
 .book-card-image{
-    width:100%
+    width:100%;
+    height: 180px;
+}
+.title{
+  font-size: 20px;
+  font-weight: bold;
+  text-align: center;
+}
+.intro{
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 3;
+  overflow: hidden;
 }
 </style>
