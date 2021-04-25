@@ -459,7 +459,7 @@ export default {
       // eslint-disable-next-line no-console
       console.log(this.getAnswer());
       this.axios({
-        url: '/api/questionnaire/retrieveQuestionnaire',
+        url: `${process.env.API_HOST}/questionnaire/retrieveQuestionnaire`,
         method: 'POST',
         data: {
           token: sessionStorage.getItem('token'),

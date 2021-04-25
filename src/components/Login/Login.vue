@@ -74,7 +74,7 @@ export default {
   methods: {
     login() {
       this.axios({
-        url: '/api/user/login',
+        url: `${process.env.API_HOST}/user/login`,
         method: 'POST',
         data: {
           token: 'login',
@@ -108,7 +108,7 @@ export default {
         path: '/Questions',
       });
       this.axios({
-        url: '/api/user/register',
+        url: `${process.env.API_HOST}/user/register`,
         method: 'POST',
         data: {
           token: 'login',

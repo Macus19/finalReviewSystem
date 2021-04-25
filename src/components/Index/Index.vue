@@ -94,22 +94,22 @@ export default {
       date: 20,
       bookList: [
         {
-          pic: 'https://shadow.elemecdn.com/app/element/hamburger.9cf7b091-55e9-11e9-a976-7f4d0b07eef6.png',
+          pic: require('../../assets/book.jpg'),
           bookName: '书本名称',
           intro: '介绍',
         },
         {
-          pic: 'https://shadow.elemecdn.com/app/element/hamburger.9cf7b091-55e9-11e9-a976-7f4d0b07eef6.png',
+          pic: require('../../assets/book.jpg'),
           bookName: '书本名称',
           intro: '介绍',
         },
         {
-          pic: 'https://shadow.elemecdn.com/app/element/hamburger.9cf7b091-55e9-11e9-a976-7f4d0b07eef6.png',
+          pic: require('../../assets/book.jpg'),
           bookName: '书本名称',
           intro: '介绍',
         },
         {
-          pic: 'https://shadow.elemecdn.com/app/element/hamburger.9cf7b091-55e9-11e9-a976-7f4d0b07eef6.png',
+          pic: require('../../assets/book.jpg'),
           bookName: '书本名称',
           intro: '介绍',
         },

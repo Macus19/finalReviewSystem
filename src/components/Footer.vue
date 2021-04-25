@@ -1,7 +1,7 @@
 <template>
   <el-row class="footer" type="flex" justify="space-around">
     <!-- 左边介绍部分 -->
-      <el-col :span="15" class="footer-left-introduction">
+      <!-- <el-col :span="15" class="footer-left-introduction">
           <p>我们是 专注于 广外人 的英文阅读课程期末复习的在线平台。</p>
           <el-row class="footer-introduction-help">
               <el-col :span="2">关注我们</el-col>
@@ -11,40 +11,40 @@
               <el-col :span="5">英文学院 & 信息学院</el-col>
           </el-row>
           <p class="footer-introduction-copyright">©2020  分析性阅读课程期末复习系统</p>
-      </el-col>
+      </el-col> -->
       <!-- 右边下载介绍部分 -->
-      <el-col :span="6" class="footer-right-subscribe">
+      <!-- <el-col :span="6" class="footer-right-subscribe"> -->
         <!-- 苹果下载 -->
-        <el-col :span="12" class="footer-subscribe-download">
+        <!-- <el-col :span="12" class="footer-subscribe-download">
           <el-row type="flex" align="middle" class="appstore-donwload">
-            <el-col :span="10" class="footer-download-icon">
+            <el-col :span="10" class="footer-download-icon"> -->
               <!-- icon -->
-              <i class="el-icon-star-off"></i>
-            </el-col>
+              <!-- <i class="el-icon-star-off"></i>
+            </el-col> -->
             <!-- 文字介绍 -->
-            <el-col :span="14">
+            <!-- <el-col :span="14">
               <p class="footer-download-text">App Store</p>
               <p class="footer-download-text">下载</p>
             </el-col>
           </el-row>
-        </el-col>
+        </el-col> -->
         <!-- 安卓下载 -->
-        <el-col :span="12" class="footer-subscribe-download">
+        <!-- <el-col :span="12" class="footer-subscribe-download">
           <el-row type="flex" align="middle" class="android-donwload">
-            <el-col :span="10" class="footer-download-icon">
+            <el-col :span="10" class="footer-download-icon"> -->
               <!-- icon -->
-              <i class="el-icon-star-off"></i>
+              <!-- <i class="el-icon-star-off"></i>
             </el-col>
-            <el-col :span="14">
+            <el-col :span="14"> -->
               <!-- 文字介绍 -->
-              <p class="footer-download-text">Android</p>
+              <!-- <p class="footer-download-text">Android</p>
               <p class="footer-download-text">下载</p>
             </el-col>
           </el-row>
-        </el-col>
+        </el-col> -->
         <!-- 下面的关注我们 -->
-        <p class="footer-subscribe-us">关注我们：</p>
-      </el-col>
+        <!-- <p class="footer-subscribe-us">关注我们：</p>
+      </el-col> -->
   </el-row>
 </template>
 

@@ -165,7 +165,7 @@ export default {
     handleClick() {
       console.log(1);
       this.axios({
-        url: 'api/realq/submitRealq',
+        url: `${process.env.API_HOST}/realq/submitRealq`,
         method: 'POST',
         data: {
           token: sessionStorage.getItem('token'),

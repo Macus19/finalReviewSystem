@@ -152,7 +152,7 @@ export default {
      */
     getPostDetail() {
       this.axios({
-        url: '/api/post/getPost',
+        url: `${process.env.API_HOST}/post/getPost`,
         method: 'POST',
         data: {
           token: sessionStorage.getItem('token'),
@@ -180,7 +180,7 @@ export default {
      */
     getPostComment() {
       this.axios({
-        url: '/api/post/getCommentList',
+        url: `${process.env.API_HOST}/post/getCommentList`,
         method: 'POST',
         data: {
           token: sessionStorage.getItem('token'),
@@ -207,7 +207,7 @@ export default {
         return;
       }
       this.axios({
-        url: '/api/post/commentPost',
+        url: `${process.env.API_HOST}/post/commentPost`,
         method: 'POST',
         data: {
           token: sessionStorage.getItem('token'),

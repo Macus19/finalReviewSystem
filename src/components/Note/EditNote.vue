@@ -37,7 +37,7 @@ export default {
   methods: {
     editNote() {
       this.axios({
-        url: 'api/note/addNote',
+        url: `${process.env.API_HOST}/note/addNote`,
         method: 'POST',
         data: {
           token: sessionStorage.getItem('token'),

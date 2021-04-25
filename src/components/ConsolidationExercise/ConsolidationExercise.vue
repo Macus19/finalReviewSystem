@@ -553,7 +553,7 @@ export default {
   methods: {
     getExeciseList() {
       this.axios({
-        url: 'api/exercise/getExerciseList',
+        url: `${process.env.API_HOST}/exercise/getExerciseList`,
         method: 'POST',
         data: {
           token: sessionStorage.getItem('token'),
@@ -573,7 +573,7 @@ export default {
     },
     getExecise() {
       this.axios({
-        url: '/api/exercise/getExercise',
+        url: `${process.env.API_HOST}/exercise/getExercise`,
         method: 'POST',
         data: {
           token: 'login',
@@ -607,7 +607,7 @@ export default {
       }
       console.log(data);
       this.axios({
-        url: 'api/exercise/submitExercise',
+        url: `${process.env.API_HOST}/exercise/submitExercise`,
         method: 'POST',
         data: {
           token: sessionStorage.getItem('token'),

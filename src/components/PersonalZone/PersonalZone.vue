@@ -223,7 +223,7 @@ export default {
   methods: {
     getNoteList() {
       this.axios({
-        url: 'api/note/getNoteList',
+        url: `${process.env.API_HOST}/note/getNoteList`,
         method: 'POST',
         data: {
           token: sessionStorage.getItem('token'),

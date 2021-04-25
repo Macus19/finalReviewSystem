@@ -174,7 +174,7 @@ export default {
   methods: {
     getExerciseList() {
       this.axios({
-        url: '/api/realq/getRealqList',
+        url: `${process.env.API_HOST}/realq/getRealqList`,
         method: 'POST',
         data: {
           token: 'login',
@@ -187,7 +187,7 @@ export default {
     },
     turnToExecise(id) {
       this.axios({
-        url: '/api/realq/getRealq',
+        url: `${process.env.API_HOST}/realq/getRealq`,
         method: 'POST',
         data: {
           token: sessionStorage.getItem('token'),

@@ -111,7 +111,7 @@ export default {
   methods: {
     getVedioList() {
       this.axios({
-        url: '/api/resource/getVideoList',
+        url: `${process.env.API_HOST}/resource/getVideoList`,
         method: 'POST',
         data: {
           token: sessionStorage.getItem('token'),

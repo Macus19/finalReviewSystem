@@ -33,7 +33,7 @@ export default {
   data() {
     return {
       // 默认显示图片
-      defaultImgSrc: 'https://shadow.elemecdn.com/app/element/hamburger.9cf7b091-55e9-11e9-a976-7f4d0b07eef6.png',
+      defaultImgSrc: require('../../../assets/book.jpg'),
       // 默认头像
       defaultAvatar: require('../../../assets/avatar.jpg'),
     };
@@ -70,6 +70,9 @@ export default {
   width:30px;
   height:30px;
   border-radius: 50%;
+}
+.page-card-image{
+  height: 250px;
 }
 .page-card-publisher-info{
   line-height: 20px;

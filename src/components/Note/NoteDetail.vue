@@ -24,7 +24,7 @@ export default {
   methods: {
     getNoteDetail() {
       this.axios({
-        url: 'api/note/getNote',
+        url: `${process.env.API_HOST}/note/getNote`,
         method: 'POST',
         data: {
           token: sessionStorage.getItem('token'),

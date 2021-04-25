@@ -114,7 +114,7 @@ export default {
   methods: {
     getBookList() {
       this.axios({
-        url: '/api/resource/getEbookList',
+        url: `${process.env.API_HOST}/resource/getEbookList`,
         method: 'POST',
         data: {
           token: sessionStorage.getItem('token'),

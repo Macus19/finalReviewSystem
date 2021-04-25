@@ -232,7 +232,7 @@ export default {
   methods: {
     getPostList() {
       this.axios({
-        url: '/api/post/getPostList',
+        url: `${process.env.API_HOST}/post/getPostList`,
         method: 'POST',
         data: {
           token: sessionStorage.getItem('token'),

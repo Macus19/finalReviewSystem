@@ -65,7 +65,7 @@ export default {
   methods: {
     editPost() {
       this.axios({
-        url: 'api/post/editPost',
+        url: `${process.env.API_HOST}/post/editPost`,
         method: 'POST',
         data: {
           token: sessionStorage.getItem('token'),
